@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script type="text/javascript">
+            const getUniqueID = () => {
+                const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+                return s4() + s4() + '-' + s4();
+            };
+
+            // create socket connection when page is loaded
+            const socket = new WebSocket('ws://127.0.0.1:8080');
+
+            // register user when connection is established
+            socket.addEventListener('open', () => {
+                socket.send(getUniqueID());
+            });
+
+            // display any received message
+            socket.addEventListener('message', ({ data }) => {
+                alert(data);
+            });
+        </script>
+        <meta charset="utf-8" />
+        <title>WS PoC</title>
+    </head>
+    <body>
+        <h1>Websocket-based alerts PoC</h1>
+    </body>
+</html>
