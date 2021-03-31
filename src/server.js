@@ -9,7 +9,7 @@ const authorizedConnections = {};
 const listener = async (req, res) => {
     switch (req.url) {
         case '/':
-            const html = await fs.readFile('index.html');
+            const html = await fs.readFile('src/index.html');
             res.writeHeader(200, { 'Content-Type': 'text/html' });
             res.write(html);
             res.end();
